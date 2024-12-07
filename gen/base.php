@@ -1,29 +1,19 @@
 <?php
 
-/*
- * This file is part of the CRUD Admin Generator project.
- *
- * Author: Jon Segador <jonseg@gmail.com>
- * Web: http://crud-admin-generator.com
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
-
 require_once __DIR__.'/../../vendor/autoload.php';
 require_once __DIR__.'/../../src/app.php';
 
+if (!isset($app)) {
+    throw new RuntimeException('A variável $app não foi inicializada. Verifique o arquivo app.php.');
+}
 
-__BASE_INCLUDES__
-
+// Incluindo os outros arquivos necessários
+require_once __DIR__.'/Consulta_Patologia/index.php';
+require_once __DIR__.'/Consultas/index.php';
+// Continue incluindo os outros arquivos aqui...
 
 $app->match('/', function () use ($app) {
-
     return $app['twig']->render('ag_dashboard.html.twig', array());
-        
-})
-->bind('dashboard');
-
+})->bind('dashboard');
 
 $app->run();
